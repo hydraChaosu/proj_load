@@ -25,6 +25,11 @@ const useStyles = makeStyles(() => ({
   content: {
     flexGrow: 1,
   },
+  header: {
+    overflow: "hidden",
+    whiteSpace: "nowrap",
+    textOverflow: "ellipsis",
+  },
 }));
 
 export default function Post({
@@ -40,6 +45,7 @@ export default function Post({
   return (
     <Card className={classes.root}>
       <CardHeader
+        className={classes.header}
         avatar={
           <Avatar alt={authorData.first_name} src={authorData.avatar_URL} />
         }
