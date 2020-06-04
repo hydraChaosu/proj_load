@@ -48,7 +48,7 @@ const Swlist = () => {
     );
 
     return (
-      <TableBody key={element}>
+      <React.Fragment key={element}>
         <StyledTableRow>
           <StyledTableCell
             scope="row"
@@ -75,7 +75,7 @@ const Swlist = () => {
             </StyledTableRow>
           );
         })}
-      </TableBody>
+      </React.Fragment>
     );
   });
 
@@ -93,7 +93,7 @@ const Swlist = () => {
             <StyledTableCell>Mass</StyledTableCell>
           </TableRow>
         </TableHead>
-        {listElements}
+        <TableBody>{listElements}</TableBody>
       </Table>
     </TableContainer>
   );
