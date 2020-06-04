@@ -1,11 +1,14 @@
 import React, { useState, useEffect, useMemo } from "react";
+import Button from "@material-ui/core/Button";
+
 import { useQuery } from "react-query";
 import { getPostsData } from "./fetchData";
 import Post from "./Post";
 
-const PostsList = ({ pageNr }) => {
+const PostsList = () => {
   const postsPerQuery = 6;
   const [allPostsData, setAllPostsData] = useState([]);
+  const [pageNr, setPageNr] = useState(0);
   const { data } = useQuery(["posts", { pageNr, postsPerQuery }], getPostsData);
   const { posts } = data;
 
@@ -32,7 +35,23 @@ const PostsList = ({ pageNr }) => {
   }, [allPostsData]);
   console.log(allPosts);
 
-  return <div className="posts">{allPosts}</div>;
+  return (
+    <>
+      <div className="posts">{allPosts}</div>
+      <div className="buttonContainer">
+        <Button
+          variant="contained"
+          color="primary"
+          size="large"
+          onClick={() => {
+            setPageNr(pageNr + 1);
+          }}
+        >
+          Load more
+        </Button>
+      </div>
+    </>
+  );
 };
 
 export default PostsList;

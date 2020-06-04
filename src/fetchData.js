@@ -12,3 +12,15 @@ export const getPostsData = async (queryName, { pageNr, postsPerQuery }) => {
   );
   return await data;
 };
+
+export const getSwData = async (queryName) => {
+  let { data: firstData } = await axios.get(`https://swapi.dev/api/people/`);
+  let fullData = firstData.results;
+  let next = firstData.next;
+  do {
+    const { data } = await axios.get(next);
+    next = data.next;
+    fullData = fullData.concat(data.results);
+  } while (next !== null);
+  return await fullData;
+};

@@ -11,7 +11,10 @@ const Navigation = () => {
     <Nav>
       <ul>
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/">Articles</Link>
+        </li>
+        <li>
+          <Link to="/swlist">Star wars characters list</Link>
         </li>
       </ul>
     </Nav>

@@ -6,38 +6,29 @@ import ErrorBoundary from "./ErrorBoundary";
 import Loader from "./Loader";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./index.css";
-import Button from "@material-ui/core/Button";
 
 const Navigation = React.lazy(() => import("./Navigation"));
 // import Navigation from "./Navigation";
 const PostsList = React.lazy(() => import("./PostsList"));
+const Swlist = React.lazy(() => import("./Swlist"));
 function App() {
-  const [pageNr, setPageNr] = useState(0);
-
   return (
     <Router>
       <ErrorBoundary>
         <div className="App">
           <Navigation />
           <Switch>
-            <Route path="/">
+            <Route exact path="/">
               <React.Suspense fallback={<Loader />}>
-                <PostsList pageNr={pageNr} />
+                <PostsList />
+              </React.Suspense>
+            </Route>
+            <Route path="/swlist">
+              <React.Suspense fallback={<Loader />}>
+                <Swlist />
               </React.Suspense>
             </Route>
           </Switch>
-          <div className="buttonContainer">
-            <Button
-              variant="contained"
-              color="primary"
-              size="big"
-              onClick={() => {
-                setPageNr(pageNr + 1);
-              }}
-            >
-              Load more
-            </Button>
-          </div>
         </div>
       </ErrorBoundary>
     </Router>
